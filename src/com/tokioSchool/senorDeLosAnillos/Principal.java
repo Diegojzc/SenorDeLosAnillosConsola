@@ -31,6 +31,7 @@ public class Principal {
         listaBestias.add(new Trasgo("Mauhúr", 100, 30));
 
 
+
         CampoDeBatalla.batalla(listaHeroes, listaBestias);
 
 
