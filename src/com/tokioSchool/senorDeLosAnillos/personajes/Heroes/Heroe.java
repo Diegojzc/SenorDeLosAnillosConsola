@@ -1,11 +1,10 @@
 package com.tokioSchool.senorDeLosAnillos.personajes.Heroes;
 
 import com.tokioSchool.senorDeLosAnillos.personajes.Personaje;
-import org.w3c.dom.ls.LSOutput;
 
 import java.util.Random;
 
-public abstract class Heroe extends Personaje {
+public  class Heroe extends Personaje {
 
     protected Random dado;
 
@@ -15,9 +14,25 @@ public abstract class Heroe extends Personaje {
         dado = new Random();
     }
 
+    @Override
+    public int tirar() {
+        int mayor=0;
+        int dado1 = dado.nextInt(101);
+        int dado2 = dado.nextInt(101);
+        if(dado1 > dado2){
 
-    public abstract int tirar();
+            return dado1;
+        } else if(dado2 > dado1){
+            mayor = dado2;
 
-}
+            return mayor;
+        }
+        return mayor;
+    }
+    }
+
+
+
+
 
 

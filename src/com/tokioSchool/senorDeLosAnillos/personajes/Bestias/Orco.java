@@ -7,9 +7,5 @@ public class Orco extends Bestia {
         super(nombre, puntosVida, armadura);
     }
 
-    @Override
-    public int tirar(){
 
-        return dado.nextInt(91);
-    }
 }

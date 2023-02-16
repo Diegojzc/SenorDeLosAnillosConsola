@@ -19,23 +19,18 @@ public class Principal {
 
         List<Heroe> listaHeroes = new ArrayList<>();
         listaHeroes.add(new Elfo("Legolas", 150, 30));
-        listaHeroes.add(new Humano("Aragorn", 150, 50));
-        listaHeroes.add(new Humano("Boromir", 100, 60));
+       listaHeroes.add(new Humano("Aragorn", 150, 50));
+         listaHeroes.add(new Humano("Boromir", 100, 60));
         listaHeroes.add(new Humano("Gandalf", 300, 30));
-        listaHeroes.add(new Hobbit("Frodo", 20, 10));
+       // listaHeroes.add(new Hobbit("Frodo", 20, 10));
 
         List<Bestia> listaBestias = new ArrayList<>();
-        listaBestias.add(new Orco("Lurtz", 200, 60));
-        listaBestias.add(new Orco("Shagrat", 220, 50));
+        listaBestias.add(new Orco("Lurtz", 220, 60));
+       listaBestias.add(new Orco("Shagrat", 200, 50));
         listaBestias.add(new Trasgo("Uglúk", 120, 30));
-        listaBestias.add(new Trasgo("Mauhúr", 100, 30));
-
-
+        listaBestias.add(new Trasgo("Mauhúr", 100, 40));
 
         CampoDeBatalla.batalla(listaHeroes, listaBestias);
-
-
-
 
 
     }

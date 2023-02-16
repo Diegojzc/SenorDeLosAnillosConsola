@@ -1,28 +1,39 @@
 package com.tokioSchool.senorDeLosAnillos.personajes;
 
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class prueba {
 
-    public static void main(String[]args) {
-        Random random = new Random();
-        int n1 = random.nextInt(6);
-        int n2 = random.nextInt(6);
-        int n3 =0;
-        System.out.println("dado 1: " + n1);
-        System.out.println("dado 2: " + n2);
-        if (n1 > n2){
-            n3= n1;
-            System.out.println("soy dado 1 " + n3);
+    public static void main(String[] args) {
+        List<PruebaPersonajes> l1 = new ArrayList<>();
+       List<PruebaPersonajes> l2 = new ArrayList<>();
 
-        }else if(n2> n1){
-            n3 =n2;
-            System.out.println("soy dado 2 " + n3);
+        l1.add(new PruebaPersonajes("diego",20));
+        l1.add(new PruebaPersonajes("paloma",21));
+        l1.add(new PruebaPersonajes("maya",19));
+        l1.add(new PruebaPersonajes("gato",18));
+        l1.add(new PruebaPersonajes("santiago",17));
+
+        l2.add(new PruebaPersonajes("diego111",20));
+        l2.add(new PruebaPersonajes("paloma111",21));
+        l2.add(new PruebaPersonajes("maya111",19));
+        l2.add(new PruebaPersonajes("gato111",18));
+        l2.add(new PruebaPersonajes("santiago111",17));
+
+
+        for (int i = 0; i < l1.size(); i++) {
+            System.out.println(l1.get(i));
+
         }
 
 
 
+
+
+
+
+
     }
+
 
 }

@@ -8,8 +8,5 @@ public class Trasgo extends Bestia {
 
     }
 
-    @Override
-    public int tirar() {
-        return dado.nextInt(91);
-    }
+
 }
