@@ -3,6 +3,7 @@ package com.tokioSchool.senorDeLosAnillos.personajes;
 import com.tokioSchool.senorDeLosAnillos.personajes.Bestias.Bestia;
 import com.tokioSchool.senorDeLosAnillos.personajes.Heroes.Heroe;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class CampoDeBatalla {
@@ -12,178 +13,74 @@ public class CampoDeBatalla {
     }
 
     public static void batalla(List<Heroe> heroes, List<Bestia> bestias) {
+        int con = 1;
 
+        while (!heroes.isEmpty() && !bestias.isEmpty()) {
 
-        int con=1;
-         while (heroes.get(0).getPuntosVida() >= 0 || bestias.get(0).getPuntosVida() >= 0 ) {
+            int[] longitudes = {heroes.size(), bestias.size()};
+            Arrays.sort(longitudes);
+            int lon = longitudes[0];
+
 
             System.out.println();
             System.out.println("TURNO " + con);
             con++;
 
-            System.out.println("-----Lucha entre " + heroes.get(0).toString() + " y " + bestias.get(0).toString());
-            //TODO ataque legolas
 
-            if (!bestias.isEmpty()) {
-                int ataqueLeg = heroes.get(0).tirar();
-                if (ataqueLeg > bestias.get(0).getArmadura()) {
-                    int golpe = ataqueLeg - bestias.get(0).getArmadura();
-                    int dano = bestias.get(0).getPuntosVida() - golpe;
-                    bestias.get(0).setPuntosVida(dano);
-                    System.out.println(heroes.get(0).getNombre() + " ataco con " + ataqueLeg + " le quita " + golpe + " a " + bestias.get(0).getNombre());
-                } else {
-                    System.out.println(heroes.get(0).getNombre() + " ataco con " + ataqueLeg + " le quita 0 punto de vida a " + bestias.get(0).getNombre());
-                }
+            for (int i = 0; i < lon; i++) {
 
+                System.out.println("-----Lucha entre " + heroes.get(i).toString() + " y " + bestias.get(i).toString());
+                //TODO ATAQUE HEROES
 
-                //TODO ATAQUE LURTZ
+                if (!bestias.isEmpty()) {
+                    int ataqueHer = heroes.get(i).atacar(bestias.get(i));
+                    int defensaBestia= bestias.get(i).defender(heroes.get(i));
+                    if (ataqueHer > defensaBestia) {
+                        int golpe = ataqueHer - defensaBestia;
+                        int dano = bestias.get(i).getPuntosVida() - golpe;
+                        bestias.get(i).setPuntosVida(dano);
+                        System.out.println(heroes.get(i).getNombre() + " ataco con " + ataqueHer + " le quita " + golpe + " a " + bestias.get(i).getNombre());
+                    } else {
+                        System.out.println(heroes.get(i).getNombre() + " ataco con " + ataqueHer + " le quita 0 punto de vida a " + bestias.get(i).getNombre());
+                    }
 
-                int ataqueLur = bestias.get(0).tirar();
-                if (ataqueLur > heroes.get(0).getArmadura()) {
-                    int golpe = ataqueLur - heroes.get(0).getArmadura();
-                    int dano = heroes.get(0).getPuntosVida() - golpe;
-                    heroes.get(0).setPuntosVida(dano);
-                    System.out.println(bestias.get(0).getNombre() + " ataco con " + ataqueLur + " le quita " + golpe + " a " + heroes.get(0).getNombre());
-                } else {
-                    System.out.println(bestias.get(0).getNombre() + " ataco con " + ataqueLur + " le quita 0 punto de vida a " + heroes.get(0).getNombre());
-                }
-                if (bestias.get(0).getPuntosVida() <= 0) {
-                    System.out.println(bestias.get(0).getNombre() + " a muerto!!");
-                    bestias.remove(0);
-                    continue;
-                }
+                    //TODO ATAQUE BESTIAS
 
-                if (heroes.get(0).getPuntosVida() <= 0) {
-                    System.out.println(heroes.get(0).getNombre() + " a muerto!!");
-                    heroes.remove(0);
-                    continue;
-                }
+                    int ataqueBes = bestias.get(i).atacar(heroes.get(i));
+                    int defensaHeroe =heroes.get(i).defender(bestias.get(i)) ;
+                    if (ataqueBes > defensaHeroe) {
+                        int golpe = ataqueBes - defensaHeroe;
+                        int dano = heroes.get(i).getPuntosVida() - golpe;
+                        heroes.get(i).setPuntosVida(dano);
+                        System.out.println(bestias.get(i).getNombre() + " ataco con " + ataqueBes + " le quita " + golpe + " a " + heroes.get(i).getNombre());
+                    } else {
+                        System.out.println(bestias.get(i).getNombre() + " ataco con " + ataqueBes + " le quita 0 punto de vida a " + heroes.get(i).getNombre());
+                    }
+                    if (bestias.get(i).getPuntosVida() <= 0) {
+                        System.out.println(bestias.get(i).getNombre() + " a muerto!!");
+                        break;
 
-            }
+                    }
 
-            if (!bestias.isEmpty()) {
+                    if (heroes.get(i).getPuntosVida() <= 0) {
+                        System.out.println(heroes.get(i).getNombre() + " a muerto!!");
 
-                System.out.println("-----Lucha entre " + heroes.get(1).toString() + " y " + bestias.get(1).toString());
-                //TODO ATAQUE ARAGORN
-
-
-                int ataqueAra = heroes.get(1).tirar();
-                if (ataqueAra > bestias.get(1).getArmadura()) {
-                    int golpe = ataqueAra - bestias.get(1).getArmadura();
-                    int dano = bestias.get(1).getPuntosVida() - golpe;
-                    bestias.get(1).setPuntosVida(dano);
-                    System.out.println(heroes.get(1).getNombre() + " ataco con " + ataqueAra + " le quita " + golpe + " a " + bestias.get(1).getNombre());
-                } else {
-                    System.out.println(heroes.get(1).getNombre() + " ataco con " + ataqueAra + " le quita 0 punto de vida a " + bestias.get(1).getNombre());
-                }
-
-                //TODO ATAQUE SHAGRAT
-
-                int ataqueSha = bestias.get(1).tirar();
-                if (ataqueSha > heroes.get(1).getArmadura()) {
-                    int golpe = ataqueSha - heroes.get(1).getArmadura();
-                    int dano = heroes.get(1).getPuntosVida() - golpe;
-                    heroes.get(1).setPuntosVida(dano);
-                    System.out.println(bestias.get(1).getNombre() + " ataco con " + ataqueSha + " le quita " + golpe + " a " + heroes.get(1).getNombre());
-                } else {
-                    System.out.println(bestias.get(0).getNombre() + " ataco con " + ataqueSha + " le quita 0 punto de vida a " + heroes.get(1).getNombre());
-                }
-                if (bestias.get(1).getPuntosVida() <= 0) {
-                    System.out.println(bestias.get(1).getNombre() + " a muerto!!");
-                    bestias.remove(1);
-                    continue;
-
-                }
-                if (heroes.get(1).getPuntosVida() <= 0) {
-                    System.out.println(heroes.get(1).getNombre() + " a muerto!!");
-                    heroes.remove(1);
-                    continue;
-
+                        break;
+                    }
                 }
             }
 
-            if (!bestias.isEmpty()) {
-                System.out.println("-----Lucha entre " + heroes.get(2).toString() + " y " + bestias.get(2).toString());
-                //TODO ATAQUE BOROMIR
-
-
-                int ataqueBor = heroes.get(2).tirar();
-                if (ataqueBor > bestias.get(2).getArmadura()) {
-                    int golpe = ataqueBor - bestias.get(2).getArmadura();
-                    int dano = bestias.get(2).getPuntosVida() - golpe;
-                    bestias.get(2).setPuntosVida(dano);
-                    System.out.println(heroes.get(2).getNombre() + " ataco con " + ataqueBor + " le quita " + golpe + " a " + bestias.get(2).getNombre());
-                } else {
-                    System.out.println(heroes.get(2).getNombre() + " ataco con " + ataqueBor + " le quita 0 punto de vida a " + bestias.get(2).getNombre());
-                }
-
-
-                //TODO ATAQUE UGLUK
-
-                int ataqueUgl = bestias.get(2).tirar();
-                if (ataqueUgl > heroes.get(2).getArmadura()) {
-                    int golpe = ataqueUgl - heroes.get(2).getArmadura();
-                    int dano = heroes.get(2).getPuntosVida() - golpe;
-                    heroes.get(2).setPuntosVida(dano);
-                    System.out.println(bestias.get(2).getNombre() + " ataco con " + ataqueUgl + " le quita " + golpe + " a " + heroes.get(2).getNombre());
-                } else {
-                    System.out.println(bestias.get(2).getNombre() + " ataco con " + ataqueUgl + " le quita 0 punto de vida a " + heroes.get(2).getNombre());
-                }
-                if (bestias.get(2).getPuntosVida() <= 0) {
-                    System.out.println(bestias.get(2).getNombre() + " a muerto!!");
-                    bestias.remove(2);
-                    continue;
-
-                }
-                if (heroes.get(2).getPuntosVida() <= 0) {
-                    System.out.println(heroes.get(2).getNombre() + " a muerto!!");
-                    heroes.remove(2);
-                    continue;
-                }
-            }
-
-            if (!bestias.isEmpty()) {
-                System.out.println("-----Lucha entre " + heroes.get(3).toString() + " y " + bestias.get(3).toString());
-                //TODO ataque GANDALF
-
-
-                int ataqueGan = heroes.get(3).tirar();
-                if (ataqueGan > bestias.get(3).getArmadura()) {
-                    int golpe = ataqueGan - bestias.get(3).getArmadura();
-                    int dano = bestias.get(3).getPuntosVida() - golpe;
-                    bestias.get(3).setPuntosVida(dano);
-                    System.out.println(heroes.get(3).getNombre() + " ataco con " + ataqueGan + " le quita " + golpe + " a " + bestias.get(3).getNombre());
-                } else {
-                    System.out.println(heroes.get(3).getNombre() + " ataco con " + ataqueGan + " le quita 0 punto de vida a " + bestias.get(3).getNombre());
-                }
-
-
-                //TODO ATAQUE MAUGUR
-
-                int ataqueMau = bestias.get(3).tirar();
-                if (ataqueMau > heroes.get(3).getArmadura()) {
-                    int golpe = ataqueMau - heroes.get(3).getArmadura();
-                    int dano = heroes.get(3).getPuntosVida() - golpe;
-                    heroes.get(3).setPuntosVida(dano);
-                    System.out.println(bestias.get(3).getNombre() + " ataco con " + ataqueMau + " le quita " + golpe + " a " + heroes.get(3).getNombre());
-                } else {
-                    System.out.println(bestias.get(3).getNombre() + " ataco con " + ataqueMau + " le quita 0 punto de vida a " + heroes.get(3).getNombre());
-                }
-                if (bestias.get(3).getPuntosVida() <= 0) {
-                    System.out.println(bestias.get(3).getNombre() + " a muerto!!");
-                    bestias.remove(3);
-                    continue;
-
-                }
-                if (heroes.get(3).getPuntosVida() <= 0) {
-                    System.out.println(heroes.get(3).getNombre() + " a muerto!!");
-                    heroes.remove(3);
-                    return;
-                }
-            }
+            bestias.removeIf(bestia -> bestia.getPuntosVida() <= 0);
+            heroes.removeIf(heroe -> heroe.getPuntosVida() <= 0);
         }
+        if (bestias.isEmpty()) {
+            System.out.println("LOS HEROES GANAN!!");
+        } else {
+            System.out.println("LAS BESTIAS GANAN!!");
         }
     }
+
+}
 
 
 

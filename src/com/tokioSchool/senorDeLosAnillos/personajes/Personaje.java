@@ -1,6 +1,5 @@
 package com.tokioSchool.senorDeLosAnillos.personajes;
 
-
 public abstract class Personaje {
 
     private String nombre;
@@ -42,13 +41,22 @@ public abstract class Personaje {
         this.armadura = armadura;
     }
 
+    public abstract int atacar(Personaje enemigo);
+
+    public int defender(Personaje enemigo){
+        return this.getArmadura();
+    }
+
+
     @Override
     public String toString() {
-        return
-                nombre  +
-                " (Vida= " + puntosVida +
+        return nombre + " (Vida= " + puntosVida +
                 ", Armadura=" + armadura +
                 ')';
+
     }
-    public abstract int tirar();
+
+
+
 }
+

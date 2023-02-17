@@ -1,6 +1,5 @@
 package com.tokioSchool.senorDeLosAnillos.personajes.Heroes;
 
-
 import com.tokioSchool.senorDeLosAnillos.personajes.Bestias.Orco;
 import com.tokioSchool.senorDeLosAnillos.personajes.Personaje;
 
@@ -11,15 +10,23 @@ public class Elfo extends Heroe {
     }
 
     @Override
-    public int tirar() {
-        int mayor=0;
+    public int atacar(Personaje personaje) {
 
+        int extraAtaque = 0;
+
+        if (personaje instanceof Orco){
+            extraAtaque = 10;
+
+        }
         int dado1 = dado.nextInt(101);
         int dado2 = dado.nextInt(101);
-         mayor = Math.max(dado1,dado2);
-        /*System.out.println("soy dado 1 " + dado1);
-        System.out.println("soy dado 2 " + dado2);
-        System.out.println(mayor);*/
-        return mayor;
+
+        return Math.max(dado1,dado2) + extraAtaque;
+
     }
-}
+
+
+
+    }
+
+

@@ -7,14 +7,19 @@ import java.util.Random;
 public class Bestia extends Personaje {
 
     protected Random dado;
+
     public Bestia(String nombre, int puntosVida, int armadura) {
         super(nombre, puntosVida, armadura);
-        dado= new Random();
+        dado = new Random();
     }
 
     @Override
-    public int tirar(){
+    public int atacar(Personaje enemigo) {
+
         return dado.nextInt(91);
+
+
     }
+
 
 }
